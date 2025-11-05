@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductCard = ({product, onClick}) => {
   return (
-    <div className="bg-white rounded-lg shadow-card overflow-hidden group">
+    <div className="bg-white rounded-lg shadow-card overflow-hidden group border border-black">
       <div className="relative h-56 overflow-hidden">
         <img
           src={product.image}
