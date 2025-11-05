@@ -24,6 +24,14 @@ const Navbar = ({onSearch, currentPath}) => {
         inputRef.current?.focus()
     }
 
+    const submitSearch = (value) => {
+        // update parent search state then navigate to collection page
+        onSearch(value)
+        navigate('/collection')
+        // close mobile menu if open
+        setOpen(false)
+    }
+
     // close menu on escape
     useEffect(()=>{
         const onKey = (e) => {
@@ -54,15 +62,21 @@ const Navbar = ({onSearch, currentPath}) => {
                     <div className="flex items-center gap-4 justify-end flex-1">
                         <div className="relative">
                             <label htmlFor="site-search" className="sr-only">Search products</label>
-                            <span className="absolute inset-y-0 left-2 flex items-center text-slate-400" aria-hidden>
+                            <button type="button" onClick={() => submitSearch(text)} className="absolute inset-y-0 left-2 flex items-center text-slate-400" aria-label="Search" title="Search">
                                 {/* search icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.386a1 1 0 01-1.414 1.415l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd"/></svg>
-                            </span>
+                            </button>
                                             <input
                                                 id="site-search"
                                                 ref={inputRef}
                                                 value={text}
                                                 onChange={(e)=>{setText(e.target.value); onSearch(e.target.value)}}
+                                                onKeyDown={(e)=>{
+                                                    if(e.key === 'Enter'){
+                                                        e.preventDefault()
+                                                        submitSearch(text)
+                                                    }
+                                                }}
                                                 placeholder={placeholder}
                                                 className="border rounded-md pl-9 pr-10 py-2 w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-accent"
                                                 aria-label="Search products"
