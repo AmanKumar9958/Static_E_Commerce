@@ -39,7 +39,7 @@ const Navbar = ({onSearch, currentPath}) => {
                 <div className="flex items-center justify-between">
                     {/* Brand: left */}
                     <div className="flex items-center gap-4 flex-1">
-                        <Link to="/" className="text-2xl font-bold text-primary hover:cursor-pointer">SKS Mart</Link>
+                        <Link to="/" className="text-2xl font-bold text-primary hover:cursor-pointer">SKS Mart - Barbigha</Link>
                     </div>
 
                     {/* Nav: center */}
@@ -64,13 +64,13 @@ const Navbar = ({onSearch, currentPath}) => {
                                                 value={text}
                                                 onChange={(e)=>{setText(e.target.value); onSearch(e.target.value)}}
                                                 placeholder={placeholder}
-                                                className="border rounded-md pl-9 pr-10 py-2 w-56 focus:outline-none focus:ring-2 focus:ring-accent"
+                                                className="border rounded-md pl-9 pr-10 py-2 w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-accent"
                                                 aria-label="Search products"
                                             />
                             {text ? (
                                 <button onClick={clear} className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500" aria-label="Clear search input">
                                     {/* clear icon */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:cursor-pointer" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"/></svg>
                                 </button>
                             ) : null}
                         </div>

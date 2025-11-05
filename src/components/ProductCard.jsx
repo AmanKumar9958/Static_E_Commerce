@@ -7,7 +7,7 @@ const ProductCard = ({product, onClick}) => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110 cursor-pointer"
+          className="w-full h-full object-contain transform transition-transform duration-300 group-hover:scale-110 cursor-pointer"
           onClick={() => onClick(product)}
         />
       </div>

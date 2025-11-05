@@ -11,7 +11,7 @@ const ProductModal = ({product, onClose}) => {
         </div>
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="w-full h-80 overflow-hidden rounded">
-            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+            <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
           </div>
           <div>
             <p className="text-slate-700 mb-4">Category: <span className="font-medium">{product.category}</span></p>
