@@ -47,7 +47,10 @@ const Navbar = ({onSearch, currentPath}) => {
                 <div className="flex items-center justify-between">
                     {/* Brand: left */}
                     <div className="flex items-center gap-4 flex-1">
-                        <Link to="/" className="text-2xl font-bold text-primary hover:cursor-pointer">SKS Mart - Barbigha</Link>
+                        <Link to="/" className="text-primary hover:cursor-pointer flex flex-col">
+                            <span className='text-lg md:text-2xl font-bold'>SKS Mart - Barbigha</span>
+                            <span className='text-sm'>1st Floor, Jagdamba Market</span>
+                        </Link>
                     </div>
 
                     {/* Nav: center */}
@@ -78,7 +81,7 @@ const Navbar = ({onSearch, currentPath}) => {
                                                     }
                                                 }}
                                                 placeholder={placeholder}
-                                                className="border rounded-md pl-9 pr-10 py-2 w-40 md:w-56 focus:outline-none focus:ring-2 focus:ring-accent"
+                                                className="border rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-accent"
                                                 aria-label="Search products"
                                             />
                             {text ? (
