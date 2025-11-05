@@ -1,28 +1,79 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-const ProductModal = ({product, onClose}) => {
-  if(!product) return null
+const ProductModal = ({ product, onClose }) => {
+  const closeButtonRef = useRef(null)
+
+  // Auto-focus the close button when the modal opens
+  useEffect(() => {
+    if (product) {
+      closeButtonRef.current?.focus()
+    }
+  }, [product])
+
+  // Add listener for Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
+  if (!product) return null
+
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full mx-4 overflow-hidden">
-        <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-lg font-bold">{product.name}</h3>
-          <button onClick={onClose} className="px-3 py-1 bg-slate-100 rounded hover:cursor-pointer">Close</button>
+    // Overlay: click to close
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+      onClick={onClose}
+      aria-modal="true"
+      role="dialog"
+    >
+      {/* Modal Box: stop click propagation */}
+      <div
+        className="bg-white rounded-lg max-w-2xl w-full mx-4 overflow-hidden shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex justify-between items-center p-4 border-b border-slate-200">
+          <h3 className="text-xl font-bold text-slate-900">{product.name}</h3>
+          <button
+            ref={closeButtonRef}
+            onClick={onClose}
+            className="p-2 rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            aria-label="Close product modal"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
+        
+        {/* Body */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="w-full h-80 overflow-hidden rounded">
+          {/* Image */}
+          <div className="w-full h-80 overflow-hidden rounded-md bg-slate-50">
             <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
           </div>
+          {/* Details */}
           <div>
-            <p className="text-slate-700 mb-4">Category: <span className="font-medium">{product.category}</span></p>
-            <p className="text-slate-700 mb-4">Available sizes:</p>
+            <div className="flex gap-2 mb-4">
+              <span className="font-medium bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-sm">{product.category}</span>
+              <span className="font-medium bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-sm">{product.gender}</span>
+            </div>
+            
+            <p className="text-slate-700 mb-2 font-medium">Available sizes:</p>
             <div className="flex gap-2 flex-wrap mb-4">
               {product.sizes.map(s => (
-                <div key={s} className="px-3 py-1 border rounded text-sm">{s}</div>
+                <div key={s} className="px-3 py-1 border border-slate-300 rounded-md text-sm text-slate-800">{s}</div>
               ))}
             </div>
-            <div className="text-2xl font-bold text-accent mb-4">₹{product.price.toFixed(2)}</div>
-            <button className="bg-accent text-white px-4 py-2 rounded">Add to cart</button>
+
+            <div className="text-3xl font-bold text-indigo-600 mb-6">
+              ₹{product.price.toFixed(2)}
+            </div>
           </div>
         </div>
       </div>
