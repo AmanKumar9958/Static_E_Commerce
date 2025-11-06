@@ -26,7 +26,7 @@ const ProductModal = ({ product, onClose }) => {
   return (
     // Overlay: click to close
     <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
       onClick={onClose}
       aria-modal="true"
       role="dialog"
@@ -37,12 +37,12 @@ const ProductModal = ({ product, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-slate-200">
-          <h3 className="text-xl font-bold text-slate-900">{product.name}</h3>
+        <div className="flex justify-between items-center p-4 border-b border-zinc-200">
+          <h3 className="text-xl font-bold text-zinc-900">{product.name}</h3>
           <button
             ref={closeButtonRef}
             onClick={onClose}
-            className="p-2 rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="p-2 rounded-full text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
             aria-label="Close product modal"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,24 +54,24 @@ const ProductModal = ({ product, onClose }) => {
         {/* Body */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Image */}
-          <div className="w-full h-80 overflow-hidden rounded-md bg-slate-50">
+          <div className="w-full h-80 overflow-hidden rounded-md bg-zinc-50">
             <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
           </div>
           {/* Details */}
           <div>
             <div className="flex gap-2 mb-4">
-              <span className="font-medium bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-sm">{product.category}</span>
-              <span className="font-medium bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-sm">{product.gender}</span>
+              <span className="font-medium bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-sm">{product.category}</span>
+              <span className="font-medium bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-sm">{product.gender}</span>
             </div>
             
-            <p className="text-slate-700 mb-2 font-medium">Available sizes:</p>
+            <p className="text-zinc-700 mb-2 font-medium">Available sizes:</p>
             <div className="flex gap-2 flex-wrap mb-4">
               {product.sizes.map(s => (
-                <div key={s} className="px-3 py-1 border border-slate-300 rounded-md text-sm text-slate-800">{s}</div>
+                <div key={s} className="px-3 py-1 border border-zinc-300 rounded-md text-sm text-zinc-800">{s}</div>
               ))}
             </div>
 
-            <div className="text-3xl font-bold text-indigo-600 mb-6">
+            <div className="text-3xl font-bold text-teal-600 mb-6">
               ₹{product.price.toFixed(2)}
             </div>
           </div>

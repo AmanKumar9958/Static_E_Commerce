@@ -45,15 +45,15 @@ const Navbar = ({ onSearch, currentPath }) => {
   const navLinkClasses = ({ isActive }) =>
     `px-3 py-2 rounded-md font-medium transition-colors ${
       isActive
-        ? 'text-indigo-600 bg-indigo-50'
-        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-    } focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`
+        ? 'text-teal-600 bg-teal-50' // Active link
+        : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50' // Inactive link
+    } focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`
 
   const mobileNavLinkClasses = (path) =>
     `w-full text-left px-3 py-3 rounded-md font-medium ${
       currentPath === path
-        ? 'text-indigo-600 bg-indigo-50'
-        : 'text-slate-700 hover:bg-slate-100'
+        ? 'text-teal-600 bg-teal-50' // Active mobile link
+        : 'text-zinc-700 hover:bg-zinc-100' // Inactive mobile link
     }`
 
   return (
@@ -62,9 +62,9 @@ const Navbar = ({ onSearch, currentPath }) => {
         <div className="flex items-center justify-between">
           {/* Brand: left */}
           <div className="flex items-center gap-4 flex-1">
-            <Link to="/" className="text-primary hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500">
-              <span className='text-lg md:text-2xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors'>SKS Mart - Barbigha</span>
-              <span className='text-xs sm:text-sm text-slate-500'>1st Floor, Jagdamba Market</span>
+            <Link to="/" className="text-primary hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500">
+              <span className='text-lg md:text-2xl font-bold text-zinc-900 group-hover:text-teal-600 transition-colors'>SKS Mart - Barbigha</span>
+              <span className='text-xs sm:text-sm text-zinc-500'>1st Floor, Jagdamba Market</span>
             </Link>
           </div>
 
@@ -86,7 +86,7 @@ const Navbar = ({ onSearch, currentPath }) => {
               <button
                 type="button"
                 onClick={() => submitSearch(text)}
-                className="absolute inset-y-0 left-2 flex items-center text-slate-400 p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="absolute inset-y-0 left-2 flex items-center text-zinc-400 p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                 aria-label="Search"
                 title="Search"
               >
@@ -104,13 +104,13 @@ const Navbar = ({ onSearch, currentPath }) => {
                   }
                 }}
                 placeholder={placeholder}
-                className="border border-slate-300 rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                className="border border-zinc-300 rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 aria-label="Search products"
               />
               {text && (
                 <button
                   onClick={clear}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                   aria-label="Clear search input"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:cursor-pointer" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
@@ -126,7 +126,7 @@ const Navbar = ({ onSearch, currentPath }) => {
                 aria-controls="mobile-menu"
                 aria-expanded={open}
                 aria-label="Toggle navigation menu"
-                className="p-2 rounded border border-slate-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="p-2 rounded border border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
@@ -136,7 +136,7 @@ const Navbar = ({ onSearch, currentPath }) => {
 
         {/* mobile menu */}
         {open && (
-          <div id="mobile-menu" className="md:hidden mt-3 border-t border-slate-200 pt-3" role="menu" aria-labelledby="mobile-menu-button">
+          <div id="mobile-menu" className="md:hidden mt-3 border-t border-zinc-200 pt-3" role="menu" aria-labelledby="mobile-menu-button">
             <div className="flex flex-col space-y-1">
               <button role="menuitem" onClick={() => { navigate('/'); setOpen(false) }} className={mobileNavLinkClasses('/')}>Home</button>
               <button role="menuitem" onClick={() => { navigate('/collection'); setOpen(false) }} className={mobileNavLinkClasses('/collection')}>Collection</button>

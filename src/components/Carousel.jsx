@@ -45,7 +45,12 @@ const Carousel = ({slides = [], interval = 3000}) => {
             <h3 className="text-3xl font-extrabold">{s.title}</h3>
             {s.subtitle && <p className="mt-2 text-sm">{s.subtitle}</p>}
             {s.cta && (
-              <a href={s.cta.href} className="inline-block mt-4 bg-accent text-white px-4 py-2 rounded">{s.cta.label}</a>
+              <a 
+                href={s.cta.href} 
+                className="inline-block mt-4 bg-teal-600 text-white px-4 py-2 rounded-md font-medium hover:bg-teal-700 transition-colors"
+              >
+                {s.cta.label}
+              </a>
             )}
           </div>
         </div>
