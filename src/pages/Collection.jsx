@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 
@@ -7,8 +7,10 @@ const Collection = ({ products, searchQuery }) => {
   const [sortBy, setSortBy] = useState('none')
   const [selected, setSelected] = useState(null)
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const [visibleCount, setVisibleCount] = useState(8)
-  const sentinelRef = useRef(null)
+  const PAGE_SIZE = 8
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const [isPaging, setIsPaging] = useState(false)
+  const [lastBatchStart, setLastBatchStart] = useState(0)
 
   const filters = ['All', 'Men', 'Women', 'Kids', 'School dress', 'Readymade garments', 'Footwear']
 
@@ -49,24 +51,23 @@ const Collection = ({ products, searchQuery }) => {
 
   // Reset visible items when filters/search change
   useEffect(() => {
-    setVisibleCount(8)
+    setVisibleCount(PAGE_SIZE)
+    setIsPaging(false)
+    setLastBatchStart(0)
   }, [activeFilter, searchQuery])
 
-  // Infinite scroll: observe sentinel to reveal more items
-  useEffect(() => {
-    const node = sentinelRef.current
-    if (!node) return
-    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setVisibleCount((c) => Math.min(c + 8, filtered.length))
-        }
-      })
-    }, { root: null, rootMargin: '200px', threshold: 0.01 })
-    io.observe(node)
-    return () => io.disconnect()
-  }, [filtered.length])
+  // "Show more" button will increment visible items in batches of 8
+  const showMore = () => {
+    if (isPaging) return
+    setIsPaging(true)
+    const nextCount = Math.min(visibleCount + PAGE_SIZE, filtered.length)
+    setLastBatchStart(visibleCount)
+    // Simulate async/network delay so spinner is visible and future API can plug in
+    setTimeout(() => {
+      setVisibleCount(nextCount)
+      setIsPaging(false)
+    }, 350)
+  }
 
   // Helper function for styling filter buttons
   const filterButtonClasses = (f) =>
@@ -141,15 +142,24 @@ const Collection = ({ products, searchQuery }) => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filtered.slice(0, visibleCount).map(p => (
-            <ProductCard key={p.id} product={p} onClick={(prod) => setSelected(prod)} />
+          {filtered.slice(0, visibleCount).map((p, i) => (
+            <div key={p.id} className={i >= lastBatchStart ? 'animate-fade-in-up' : ''}>
+              <ProductCard product={p} onClick={(prod) => setSelected(prod)} />
+            </div>
           ))}
         </div>
 
-        {/* Sentinel for infinite scroll */}
+        {/* Show more button */}
         {visibleCount < filtered.length && (
-          <div ref={sentinelRef} className="py-6" aria-hidden="true">
-            <div className="mx-auto h-8 w-8 rounded-full border-2 border-zinc-300 border-t-teal-500 animate-spin" />
+          <div className="flex justify-center pt-6">
+            <button
+              onClick={showMore}
+              disabled={isPaging}
+              className="px-5 py-2 rounded-md border border-zinc-300 bg-white text-zinc-800 font-medium hover:bg-zinc-100 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 flex items-center gap-2"
+            >
+              {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-zinc-300 border-t-teal-500 animate-spin" />}
+              <span>Show more</span>
+            </button>
           </div>
         )}
 

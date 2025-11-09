@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyImage from './LazyImage'
 
 const ProductCard = ({ product, onClick }) => {
   // This makes both the image and the title clickable,
@@ -14,9 +15,10 @@ const ProductCard = ({ product, onClick }) => {
         className="relative h-56 overflow-hidden bg-zinc-50 cursor-pointer"
         onClick={handleClick}
       >
-        <img
+        <LazyImage
           src={product.image}
           alt={product.name}
+          wrapperClassName="absolute inset-0"
           className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
         />
         {/* Add a focus ring for keyboard accessibility */}
