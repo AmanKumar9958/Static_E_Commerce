@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 
@@ -7,8 +7,10 @@ const Collection = ({ products, searchQuery }) => {
   const [sortBy, setSortBy] = useState('none')
   const [selected, setSelected] = useState(null)
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(8)
+  const sentinelRef = useRef(null)
 
-  const filters = ['All', 'Men', 'Women', 'Kids', 'School dress', 'Readymade garments', 'Shoes']
+  const filters = ['All', 'Men', 'Women', 'Kids', 'School dress', 'Readymade garments', 'Footwear']
 
   const filtered = useMemo(() => {
     // Start with a copy of the full product list
@@ -29,8 +31,12 @@ const Collection = ({ products, searchQuery }) => {
           return genders.includes(activeFilter)
         })
       } else {
-        // Handle category filters
-        list = list.filter(p => p.category === activeFilter)
+        // Handle category filters; support legacy 'Shoes' data for Footwear
+        if (activeFilter === 'Footwear') {
+          list = list.filter(p => p.category === 'Footwear' || p.category === 'Shoes')
+        } else {
+          list = list.filter(p => p.category === activeFilter)
+        }
       }
     }
 
@@ -40,6 +46,27 @@ const Collection = ({ products, searchQuery }) => {
     
     return list
   }, [products, activeFilter, sortBy, searchQuery])
+
+  // Reset visible items when filters/search change
+  useEffect(() => {
+    setVisibleCount(8)
+  }, [activeFilter, searchQuery])
+
+  // Infinite scroll: observe sentinel to reveal more items
+  useEffect(() => {
+    const node = sentinelRef.current
+    if (!node) return
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((c) => Math.min(c + 8, filtered.length))
+        }
+      })
+    }, { root: null, rootMargin: '200px', threshold: 0.01 })
+    io.observe(node)
+    return () => io.disconnect()
+  }, [filtered.length])
 
   // Helper function for styling filter buttons
   const filterButtonClasses = (f) =>
@@ -114,10 +141,17 @@ const Collection = ({ products, searchQuery }) => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filtered.map(p => (
+          {filtered.slice(0, visibleCount).map(p => (
             <ProductCard key={p.id} product={p} onClick={(prod) => setSelected(prod)} />
           ))}
         </div>
+
+        {/* Sentinel for infinite scroll */}
+        {visibleCount < filtered.length && (
+          <div ref={sentinelRef} className="py-6" aria-hidden="true">
+            <div className="mx-auto h-8 w-8 rounded-full border-2 border-zinc-300 border-t-teal-500 animate-spin" />
+          </div>
+        )}
 
         {/* Product Modal */}
         {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}

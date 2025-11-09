@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import LazyImage from './LazyImage'
 
 const Carousel = ({slides = [], interval = 3000}) => {
   const [index, setIndex] = useState(0)
@@ -40,7 +41,7 @@ const Carousel = ({slides = [], interval = 3000}) => {
         >
           {/* gradient to improve left-side text contrast */}
           <div className="absolute inset-0 pointer-events-none" style={{background: 'linear-gradient(to right, rgba(0,0,0,0.45), rgba(0,0,0,0))'}} />
-          <img src={s.image} alt={s.alt || ''} className="h-full object-contain object-right" />
+          <LazyImage src={s.image} alt={s.alt || ''} eager={i===0} className="h-full object-contain object-right" wrapperClassName="h-full w-full" />
           <div className="absolute left-6 top-1/2 -translate-y-1/2 text-white drop-shadow-lg">
             <h3 className="text-3xl font-extrabold">{s.title}</h3>
             {s.subtitle && <p className="mt-2 text-sm">{s.subtitle}</p>}

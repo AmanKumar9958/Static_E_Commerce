@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import LazyImage from './LazyImage'
 
 const ProductModal = ({ product, onClose }) => {
   const closeButtonRef = useRef(null)
@@ -55,7 +56,7 @@ const ProductModal = ({ product, onClose }) => {
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Image */}
           <div className="w-full h-80 overflow-hidden rounded-md bg-zinc-50">
-            <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
+            <LazyImage src={product.image} alt={product.name} className="w-full h-full object-contain" wrapperClassName="w-full h-full" />
           </div>
           {/* Details */}
           <div>

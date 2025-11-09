@@ -6,7 +6,7 @@ const items = [
     gender: 'Kids',
     category: 'School dress',
     sizes: ['S', 'M', 'L'],
-    price: 12.99,
+    price: 200,
     image: 'https://imgs.search.brave.com/Lf52mK6a62zhS2HQSYFH5Ci2kaYvXrdQ0ic9cb5lJGg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aWlt/Zy50aXN0YXRpYy5j/b20vZnAvMi8wMDQv/MzczL3NjaG9vbC1k/cmVzcy0zOTkuanBn',
   },
   {
@@ -15,7 +15,7 @@ const items = [
     gender: 'Men',
     category: 'Readymade garments',
     sizes: ['M', 'L', 'XL'],
-    price: 29.99,
+    price: 250,
     image: 'https://imgs.search.brave.com/bc3x5jJBX3z9CF6AMjbYVFHc2ShPoG0UkDzUQue-_t8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zbGlt/YWdlcy5tYWN5c2Fz/c2V0cy5jb20vaXMv/aW1hZ2UvTUNZL3By/b2R1Y3RzLzgvb3B0/aW1pemVkLzMxNDE2/ODc4X2ZweC50aWY_/cWx0PTgwLDAmcmVz/TW9kZT1zaGFycDIm/b3BfdXNtPTEuNzUs/MC4zLDIsMCZmbXQ9/anBlZyZ3aWQ9MzQy/JmhlaT00MTc',
   },
   {
@@ -24,7 +24,7 @@ const items = [
     gender: 'Women',
     category: 'Readymade garments',
     sizes: ['S', 'M'],
-    price: 45.0,
+    price: 300,
     image: 'https://imgs.search.brave.com/FQuzpgGmO4X4qQqWMITn42WkCqDyYZGhJMHD8moy_WI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFPcWRnNU9VU0wu/anBn',
   },
   {
@@ -33,7 +33,7 @@ const items = [
     gender: 'Men',
     category: 'Readymade garments',
     sizes: ['M', 'L', 'XL'],
-    price: 79.99,
+    price: 700,
     image: 'https://imgs.search.brave.com/e3CAc55Dw7AK3HTfFXt0IZar7mxmCZHZr4Sx5DTmb0I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9BTkRST0lEL0Rl/ZmF1bHQvMjAyMy8x/Mi8zNzI0MDI1NjUv/QlQvVEgvSUovMTEw/MTY1NjUxL3Byb2R1/Y3QtanBlZy0yNTB4/MjUwLmpwZw',
   },
   {
@@ -42,7 +42,7 @@ const items = [
     gender: 'Kids',
     category: 'Readymade garments',
     sizes: ['S', 'M'],
-    price: 19.5,
+    price: 200,
     image: 'https://imgs.search.brave.com/zk5NkuA1NOErs7sKpo9cuAXj3753b9nQkre1c4fCPTc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmNnbGNkbi5jb20v/YnJhaW5iZWVzL2lt/YWdlcy9wcm9kdWN0/cy8zMDB4MzY0LzIw/MTc2NDk3YS53ZWJw',
   },
   {
@@ -51,7 +51,7 @@ const items = [
     gender: 'Men',
     category: 'Readymade garments',
     sizes: ['28', '30', '32', '34', '36', '40'],
-    price: 35.0,
+    price: 200,
     image: 'https://imgs.search.brave.com/BCJsUR-qcUfOpYpEUk4QBzaPBcsfsHEW_lkMKnewWOo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFkOUp1QzNVQ0wu/anBn',
   },
   {
@@ -60,7 +60,7 @@ const items = [
     gender: 'Men',
     category: 'Readymade garments',
     sizes: ['28', '30', '32', '34', '36', '40'],
-    price: 35.0,
+    price: 350,
     image: 'https://imgs.search.brave.com/p9atc5umMYilm0TrI2LeLD_sa6zoRHF8jimsmcmyLQw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zbGlt/YWdlcy5tYWN5c2Fz/c2V0cy5jb20vaXMv/aW1hZ2UvTUNZL3By/b2R1Y3RzLzUvb3B0/aW1pemVkLzk4MzEw/NzVfZnB4LnRpZj9x/bHQ9ODAsMCZyZXNN/b2RlPXNoYXJwMiZv/cF91c209MS43NSww/LjMsMiwwJmZtdD1q/cGVnJndpZD0zNDIm/aGVpPTQxNw',
   },
   {
@@ -73,21 +73,21 @@ const items = [
     image: 'https://imgs.search.brave.com/knQAMwttidirZMW6dZnkmmfqa79jzrr51K9ZdE9t5e4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9jbG9z/ZS11cC10d28td29t/ZW4tbGVncy1qZWFu/cy1wZW9wbGUtZmFz/aGlvbi1zdHlsZS1j/bG90aGluZy1jb25j/ZXB0LTYxNDY1NDU3/LmpwZw',
   },
 
-  // Shoes
+  // Footwear
   {
     id: 'p8',
     name: 'Kids School Shoes (Black)',
     gender: 'Kids',
-    category: 'Shoes',
+    category: 'Footwear',
     sizes: ['5', '6', '7', '8', '9'],
-    price: 35.0,
+    price: 180,
     image: 'https://imgs.search.brave.com/VoSFe5VbJNYM5f0SSf2g0pVP8SCMy56Lx09UMPHXyTo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ncmFk/ZWZvb3R3ZWFyLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/My8xMS8xLTQwMHg0/MDAuanBn',
   },
   {
     id: 'p11',
     name: 'Kids School Shoes (White)',
     gender: 'Kids',
-    category: 'Shoes',
+    category: 'Footwear',
     sizes: ['5', '6', '7', '8', '9'],
     price: 250,
     image: 'https://imgs.search.brave.com/moCQb15ZW98Eu97OqVF8CCZM56JT2Ho1NVP2-xlG28o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/ZmNnbGNkbi5jb20v/YnJhaW5iZWVzL2lt/YWdlcy9wcm9kdWN0/cy8zMDB4MzY0LzE5/ODQwNTgzYS53ZWJw',
@@ -96,7 +96,7 @@ const items = [
     id: 'p12',
     name: 'Sports Shoes',
     gender: 'Unisex',
-    category: 'Shoes',
+    category: 'Footwear',
     sizes: ['5', '6', '7', '8', '9', '10', '11'],
     price: 500,
     image: 'https://imgs.search.brave.com/bxzM-9SpPCHUJCVk7KLcmSpkyZLnUJhb9Fkqxp9eGIc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZWRj/aGllZi5pbi9jZG4v/c2hvcC9maWxlcy83/XzgxZGE4NjQzLWQy/YTAtNGRkNy04NTdm/LTlkZTM4YTdmM2Y5/Mi5qcGc_dj0xNzU2/MDYxOTU5JndpZHRo/PTM3NQ',
@@ -292,6 +292,78 @@ const items = [
     price: 1000,
     image: 'https://imgs.search.brave.com/XiEUg6JUr31tRarM4ZXt08tf0VS95AiQRdgCmo2zdFc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjE1bjM3cXZ6ZUwu/anBn'
   },
+  {
+    id: 'p34',
+    name: 'Formal Shoes',
+    gender: 'Men',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/rG3smYJbpeUpSGHuBK83YsF3CcCZJ54ZXcn909a9Y4E/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9iYWNj/YWJ1Y2NpLmNvbS9j/ZG4vc2hvcC9wcm9k/dWN0cy8wMy1fM18t/bWluXzM5OWRlOTlj/LWU2MDYtNDFhNy1h/ZjEzLTMyYjIxODE5/YjJjYi5qcGc_dj0x/NjYzMzE0NTQ0Jndp/ZHRoPTE4MDA'
+  },
+  {
+    id: 'p35',
+    name: 'Loafers',
+    gender: 'Unisex',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/s2En_FtPuudHhAhw9ZhhXQlV5wMWQWJf9mFozczclok/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bW9udGVjYXJsby5p/bi9jZG4vc2hvcC9w/cm9kdWN0cy8yMDE4/MDRGVy0yLThfOC5q/cGc_dj0xNzA2OTYy/Nzg1JndpZHRoPTEw/ODA'
+  },
+  {
+    id: 'p36',
+    name: 'Slippers',
+    gender: 'Unisex',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 150,
+    image: 'https://imgs.search.brave.com/HxBWOhFIATDLvD-_9sE1keUnEjqu5UPPhbhu3PqWT0s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ub3N0/cmFpbi5pbi9jZG4v/c2hvcC9maWxlcy8y/XzgxYjQ2Zjg5LTAw/N2EtNDgzMS04YjUx/LWJlNjU0ODk3Zjc5/YS53ZWJwP3Y9MTc0/NTc1MTY3NyZ3aWR0/aD0yMTYw'
+  },
+  {
+    id: 'p37',
+    name: 'Sneakers',
+    gender: 'Unisex',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 600,
+    image: 'https://imgs.search.brave.com/wVJHN903EvkQXSSbGDHNQyZCrgumFyoTI9JmFSUFD1c/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/d2Fsa2Fyb28uaW4v/Y2RuL3Nob3AvZmls/ZXMvV1kzNDg5LVdo/aXRlLUJlaWdlLmpw/Zz92PTE3NTM1MTI0/MTYmd2lkdGg9MTYw/MA'
+  },
+  {
+    id: 'p38',
+    name: 'Sandals',
+    gender: 'Unisex',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/9bzW-vcYw75IuzEyoG4oJNP_LiK6bi_8q_t5zlSKJAg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9reGFk/bWluLm1ldHJvc2hv/ZXMuY29tL3Byb2R1/Y3QvMTgtMTAyNy81/NTAvMTgtMTAyN0xB/MTIuanBn'
+  },
+  {
+    id: 'p39',
+    name: 'Boots',
+    gender: 'Unisex',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/MrfJuYLup2yN-LBvVqke2XAXnSymzHAMUp28ljA-ISE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wbHVz/LnVuc3BsYXNoLmNv/bS9wcmVtaXVtX3Bo/b3RvLTE3Mjk3ODg4/OTE4NjMtMGQ5YjZm/MmI0NTNiP2ZtPWpw/ZyZxPTYwJnc9MzAw/MCZpeGxpYj1yYi00/LjEuMCZpeGlkPU0z/d3hNakEzZkRCOE1I/eHpaV0Z5WTJoOE9Y/eDhZbTl2ZEhOOFpX/NThNSHg4TUh4OGZE/QT0'
+  },
+  {
+    id: 'p40',
+    name: 'Jutti',
+    gender: 'Women',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/0f5ddpIoph3MEOoxT4WyzZmRjxbFAmS0szKZXt2jWnk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NjFRYUNodXJQT0wu/anBn'
+  },
+  {
+    id: 'p41',
+    name: 'Heels',
+    gender: 'Women',
+    category: 'Footwear',
+    sizes: ['6', '7', '8', '9', '10', '11'],
+    price: 400,
+    image: 'https://imgs.search.brave.com/YSgxG-awYQcWj-92X0Rre9fVPth-641mP8l3eJZrtWo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzMwLzYz/LzA0LzMwNjMwNDg2/ZGJhZjgwMzYzYTI3/MjM4YjFiMDVhYjBk/LmpwZw'
+  },
 ]
 
 // Admin-friendly grouped exports
@@ -303,6 +375,7 @@ export const kids = items.filter(i => i.gender === 'Kids')
 export const byCategory = {
   'Readymade garments': items.filter(i => i.category === 'Readymade garments'),
   'School dress': items.filter(i => i.category === 'School dress'),
+  'Footwear': items.filter(i => i.category === 'Footwear'),
 }
 
 // Backwards-compatible flat list (used by the UI)
