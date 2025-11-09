@@ -23,8 +23,11 @@ const Collection = ({ products, searchQuery }) => {
     // 2. Apply active category/gender filter
     if (activeFilter !== 'All') {
       if (['Men', 'Women', 'Kids'].includes(activeFilter)) {
-        // Handle gender filters
-        list = list.filter(p => p.gender === activeFilter)
+        // Handle gender filters, allowing multi-gender strings like 'Men, Women'
+        list = list.filter(p => {
+          const genders = p.gender.split(',').map(g => g.trim())
+          return genders.includes(activeFilter)
+        })
       } else {
         // Handle category filters
         list = list.filter(p => p.category === activeFilter)
