@@ -22,7 +22,7 @@ const Contact = () => {
                 href={mapsHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block mt-3 text-teal-600 font-medium hover:text-teal-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded-md"
+                className="inline-block mt-3 text-primary font-medium hover:text-primary/80 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
                 aria-label="Open address in Google Maps"
               >
                 View on Google Maps

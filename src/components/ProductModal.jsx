@@ -43,7 +43,7 @@ const ProductModal = ({ product, onClose }) => {
           <button
             ref={closeButtonRef}
             onClick={onClose}
-            className="p-2 rounded-full text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="p-2 rounded-full text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Close product modal"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,8 +61,8 @@ const ProductModal = ({ product, onClose }) => {
           {/* Details */}
           <div>
             <div className="flex gap-2 mb-4">
-              <span className="font-medium bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-sm">{product.category}</span>
-              <span className="font-medium bg-teal-50 text-teal-800 px-3 py-1 rounded-full text-sm">{product.gender}</span>
+              <span className="font-medium bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">{product.category}</span>
+              <span className="font-medium bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">{product.gender}</span>
             </div>
             
             <p className="text-zinc-700 mb-2 font-medium">Available sizes:</p>
@@ -72,7 +72,7 @@ const ProductModal = ({ product, onClose }) => {
               ))}
             </div>
 
-            <div className="text-3xl font-bold text-teal-600 mb-6">
+            <div className="text-3xl font-bold text-primary mb-6">
               ₹{product.price.toFixed(2)}
             </div>
           </div>

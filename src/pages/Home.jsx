@@ -17,12 +17,7 @@ const Home = ({ products, onProductClick }) => {
               Stylish, modern garments for Men, Women & Kids. Shop school dresses, readymade garments and corporate uniforms.
             </p>
             <div className="mt-8">
-              <Link
-                to="/collection"
-                className="inline-block border border-transparent bg-teal-600 text-white px-6 py-3 rounded-md font-medium hover:bg-teal-700 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-teal-600 transform hover:-translate-y-0.5"
-              >
-                Explore Collection
-              </Link>
+                      <Link to="/collection" className="inline-block border border-transparent bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/80 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transform hover:-translate-y-0.5">Explore</Link>
             </div>
           </div>
           <div className="rounded-lg overflow-hidden">
@@ -40,12 +35,12 @@ const Home = ({ products, onProductClick }) => {
             <h2 className="text-3xl font-semibold text-zinc-900">Latest Collection</h2>
             <Link
               to="/collection"
-              className="text-teal-600 font-medium hover:text-teal-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded-md px-1"
+              className="text-primary font-medium hover:text-primary/80 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1"
             >
               View All
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {latest.map(p => (
               <ProductCard key={p.id} product={p} onClick={onProductClick} />
             ))}

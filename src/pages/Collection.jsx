@@ -71,14 +71,14 @@ const Collection = ({ products, searchQuery }) => {
 
   // Helper function for styling filter buttons
   const filterButtonClasses = (f) =>
-    `hover:cursor-pointer px-3 py-2 rounded-md transition-all duration-150 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-teal-500 ${
+    `hover:cursor-pointer px-3 py-2 rounded-md transition-all duration-150 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary ${
       activeFilter === f
-        ? 'bg-teal-600 text-white shadow-sm' // Active state
+        ? 'bg-primary text-white shadow-sm' // Active state
         : 'bg-white text-zinc-800 border border-zinc-300 hover:bg-zinc-100' // Inactive state
     }`
 
   // Helper variable for styling the select dropdown
-  const selectClasses = "px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-zinc-800"
+  const selectClasses = "px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary text-zinc-800"
 
   // Reusable Filter Controls component (for both mobile and desktop)
   const FilterControls = () => (
@@ -116,7 +116,7 @@ const Collection = ({ products, searchQuery }) => {
             onClick={() => setFiltersOpen(o => !o)}
             aria-expanded={filtersOpen}
             aria-controls="mobile-filters"
-            className="w-full flex items-center justify-between px-4 py-2 border border-zinc-300 rounded-md bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="w-full flex items-center justify-between px-4 py-2 border border-zinc-300 rounded-md bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <span className="flex items-center gap-2 font-medium text-zinc-800">
               {/* Filter Icon */}
@@ -155,9 +155,9 @@ const Collection = ({ products, searchQuery }) => {
             <button
               onClick={showMore}
               disabled={isPaging}
-              className="px-5 py-2 rounded-md border border-zinc-300 bg-white text-zinc-800 font-medium hover:bg-zinc-100 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 flex items-center gap-2"
+              className="px-5 py-2 rounded-md border border-zinc-300 bg-white text-zinc-800 font-medium hover:bg-zinc-100 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-2"
             >
-              {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-zinc-300 border-t-teal-500 animate-spin" />}
+              {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-zinc-300 border-t-primary animate-spin" />}
               <span>Show more</span>
             </button>
           </div>

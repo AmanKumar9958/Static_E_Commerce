@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0f172a',
-        accent: '#f97316',
+        primary: '#38B5FE', // Updated primary brand color
+        accent: '#f97316', // existing accent (can adjust later if contrast issues)
       },
       boxShadow: {
         card: '0 6px 18px rgba(15,23,42,0.08)',

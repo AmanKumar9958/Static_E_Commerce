@@ -9,3 +9,15 @@
 .animate-fade-in-up {
 	animation: fade-in-up 300ms ease-out both;
 }
+
+/* Utility override if tailwind theme extension failed: ensure primary classes work */
+.text-primary { color: #38B5FE; }
+.bg-primary { background-color: #38B5FE; }
+.border-primary { border-color: #38B5FE; }
+.focus\:ring-primary:focus { --tw-ring-color: #38B5FE; }
+.focus-visible\:ring-primary:focus-visible { --tw-ring-color: #38B5FE; }
+.bg-primary\/10 { background-color: rgba(56,181,254,0.10); }
+.text-primary\/80 { color: rgba(56,181,254,0.80); }
+.hover\:bg-primary:hover { background-color: #38B5FE; }
+.hover\:bg-primary\/80:hover { background-color: rgba(56,181,254,0.80); }
+.hover\:text-primary:hover { color: #38B5FE; }

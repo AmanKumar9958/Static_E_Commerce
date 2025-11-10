@@ -9,27 +9,25 @@ const ProductCard = ({ product, onClick }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden group border border-zinc-200 transition-shadow hover:shadow-lg">
-      {/* Image Container */}
-      <div
-        className="relative h-56 overflow-hidden bg-zinc-50 cursor-pointer"
+    <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-shadow hover:shadow-lg">
+      {/* Image Container: flex-center so full image always visible */}
+      <button
+        type="button"
         onClick={handleClick}
+        className="w-full flex items-center justify-center bg-zinc-50 h-64 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <LazyImage
           src={product.image}
           alt={product.name}
-          wrapperClassName="absolute inset-0"
-          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="max-h-full max-w-full object-contain"
         />
-        {/* Add a focus ring for keyboard accessibility */}
-        <div className="absolute inset-0 rounded-t-lg focus-within:ring-2 focus-within:ring-teal-500" />
-      </div>
+      </button>
       
       {/* Content */}
       <div className="p-4">
         <button
           onClick={handleClick}
-          className="font-semibold text-base text-zinc-900 text-left hover:text-teal-600 transition-colors focus:outline-none focus-visible:text-teal-600"
+          className="font-semibold text-base text-zinc-900 text-left hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
         >
           {product.name}
         </button>

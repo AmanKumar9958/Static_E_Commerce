@@ -48,7 +48,7 @@ const Carousel = ({slides = [], interval = 3000}) => {
             {s.cta && (
               <a 
                 href={s.cta.href} 
-                className="inline-block mt-4 bg-teal-600 text-white px-4 py-2 rounded-md font-medium hover:bg-teal-700 transition-colors"
+                className="inline-block mt-4 bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-primary/80 transition-colors"
               >
                 {s.cta.label}
               </a>
