@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
 import ProductModal from './components/ProductModal'
@@ -16,9 +17,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen">
+      <div className="min-h-screen flex flex-col">
         <Navbar onSearch={setSearch} currentPath={window.location.pathname} />
-        <main className="pt-6">
+        <main className="pt-6 flex-1">
           <Routes>
             <Route path="/" element={<Home products={products} onProductClick={handleProductClick} />} />
             <Route path="/collection" element={<Collection products={products} searchQuery={search} onProductClick={handleProductClick} />} />
@@ -27,6 +28,7 @@ const App = () => {
           </Routes>
           {selectedProduct && <ProductModal product={selectedProduct} onClose={()=>setSelectedProduct(null)} />}
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   )
