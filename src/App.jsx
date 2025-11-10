@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+import BackToTopButton from './components/BackToTopButton'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
 import ProductModal from './components/ProductModal'
@@ -18,8 +20,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-white px-3 py-2 rounded">Skip to content</a>
         <Navbar onSearch={setSearch} currentPath={window.location.pathname} />
-        <main className="pt-6 flex-1">
+        <ScrollToTop />
+        <main className="pt-6 flex-1" id="main" role="main">
           <Routes>
             <Route path="/" element={<Home products={products} onProductClick={handleProductClick} />} />
             <Route path="/collection" element={<Collection products={products} searchQuery={search} onProductClick={handleProductClick} />} />
@@ -29,6 +33,7 @@ const App = () => {
           {selectedProduct && <ProductModal product={selectedProduct} onClose={()=>setSelectedProduct(null)} />}
         </main>
         <Footer />
+        <BackToTopButton />
       </div>
     </BrowserRouter>
   )

@@ -14,12 +14,13 @@ const ProductCard = ({ product, onClick }) => {
       <button
         type="button"
         onClick={handleClick}
-        className="w-full flex items-center justify-center bg-zinc-50 h-64 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        className="w-full flex items-center justify-center bg-zinc-50 h-64 p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary overflow-hidden"
       >
         <LazyImage
           src={product.image}
           alt={product.name}
-          className="max-h-full max-w-full object-contain"
+          wrapperClassName="w-full h-full"
+          className="w-full h-full object-contain"
         />
       </button>
       
