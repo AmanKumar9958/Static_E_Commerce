@@ -4,8 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#38B5FE', // Updated primary brand color
-        accent: '#f97316', // existing accent (can adjust later if contrast issues)
+        primary: '#60C4FE', // site-wide brand blue
+        accent: '#F97316', // Warm Orange CTA
+        heading: '#0A3D62', // Dark Navy for headings / accents
+        body: '#2D3748', // Dark Charcoal for body text
+        neutral: '#FFFFFF', // Pure white neutral
       },
       boxShadow: {
         card: '0 6px 18px rgba(15,23,42,0.08)',

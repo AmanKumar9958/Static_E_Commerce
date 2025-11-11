@@ -9,7 +9,7 @@ const ProductCard = ({ product, onClick }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-shadow hover:shadow-lg">
+  <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-shadow hover:shadow-lg hover:cursor-pointer">
       {/* Image Container: flex-center so full image always visible */}
       <button
         type="button"
@@ -20,7 +20,7 @@ const ProductCard = ({ product, onClick }) => {
           src={product.image}
           alt={product.name}
           wrapperClassName="w-full h-full"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain hover:cursor-pointer"
         />
       </button>
       
@@ -28,16 +28,16 @@ const ProductCard = ({ product, onClick }) => {
       <div className="p-4">
         <button
           onClick={handleClick}
-          className="font-semibold text-base text-zinc-900 text-left hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+          className="font-semibold text-base text-heading text-left hover:text-primary transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
         >
           {product.name}
         </button>
-        <p className="text-sm text-zinc-500 mt-1">{product.sizes.join(' • ')}</p>
+        <p className="text-sm text-body/70 mt-1">{product.sizes.join(' • ')}</p>
         <div className="mt-3 flex items-center justify-between">
-          <div className="text-xl font-bold text-zinc-900">
+          <div className="text-xl font-bold text-heading">
             ₹{product.price.toFixed(2)}
           </div>
-          <div className="text-xs font-medium bg-zinc-100 text-zinc-700 px-2 py-1 rounded-full">{product.gender}</div>
+          <div className="text-xs font-medium bg-zinc-100 text-body px-2 py-1 rounded-full">{product.gender}</div>
         </div>
       </div>
     </div>

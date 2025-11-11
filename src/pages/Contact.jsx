@@ -28,6 +28,21 @@ const Contact = () => {
                 View on Google Maps
               </a>
             </div>
+            <div>
+              <h2 className="text-xl font-semibold text-zinc-900">WhatsApp</h2>
+              <p className="text-zinc-700 mt-1 text-lg">
+                <a
+                  href="https://wa.me/919022791121"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary font-medium hover:text-primary/80 hover:underline"
+                  aria-label="Chat with us on WhatsApp at +91 9022791121"
+                >
+                  +91 9022791121
+                </a>
+                <span className="ml-2 text-zinc-500">(WhatsApp only)</span>
+              </p>
+            </div>
             {/* You could add more sections here like Phone or Email */}
             {/* <div>
               <h2 className="text-xl font-semibold text-zinc-900">Phone</h2>

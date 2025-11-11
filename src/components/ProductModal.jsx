@@ -61,8 +61,8 @@ const ProductModal = ({ product, onClose }) => {
           {/* Details */}
           <div>
             <div className="flex gap-2 mb-4">
-              <span className="font-medium bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">{product.category}</span>
-              <span className="font-medium bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">{product.gender}</span>
+              <span className="font-medium bg-[#60C4FE] text-[#2D3748] px-3 py-1 rounded-full text-sm">{product.category}</span>
+              <span className="font-medium bg-[#60C4FE] text-[#2D3748] px-3 py-1 rounded-full text-sm">{product.gender}</span>
             </div>
             
             <p className="text-zinc-700 mb-2 font-medium">Available sizes:</p>
@@ -72,7 +72,7 @@ const ProductModal = ({ product, onClose }) => {
               ))}
             </div>
 
-            <div className="text-3xl font-bold text-primary mb-6">
+            <div className="text-3xl font-bold text-[#60C4FE] mb-6">
               ₹{product.price.toFixed(2)}
             </div>
           </div>

@@ -13,12 +13,17 @@ const Home = ({ products, onProductClick }) => {
         {/* Hero Section */}
         <section className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-lg p-6 md:p-8 shadow-md mb-12">
           <div>
-            <h1 className="text-4xl lg:text-5xl font-extrabold text-zinc-900">SKS Mart - Barbigha</h1>
-            <p className="mt-4 text-lg text-zinc-600">
+            <h1 className="text-4xl lg:text-5xl font-extrabold text-heading">SKS Mart - Barbigha</h1>
+            <p className="mt-4 text-lg text-body/80">
               Stylish, modern garments for Men, Women & Kids. Shop school dresses, readymade garments and corporate uniforms.
             </p>
             <div className="mt-8">
-                      <Link to="/collection" className="inline-block border border-transparent bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-primary/80 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transform hover:-translate-y-0.5">Explore</Link>
+              <Link
+                to="/collection"
+                className="inline-block bg-white text-heading px-6 py-3 rounded-md font-bold transition-all duration-200 shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-heading transform hover:-translate-y-0.5"
+              >
+                Explore
+              </Link>
             </div>
           </div>
           <div className="rounded-lg overflow-hidden">
@@ -53,7 +58,7 @@ const Home = ({ products, onProductClick }) => {
         {/* Latest Collection Section */}
         <section>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-semibold text-zinc-900">Latest Collection</h2>
+            <h2 className="text-3xl font-semibold text-heading">Latest Collection</h2>
             <Link
               to="/collection"
               className="text-primary font-medium hover:text-primary/80 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1"
@@ -70,7 +75,7 @@ const Home = ({ products, onProductClick }) => {
 
         {/* Shop by Category */}
         <section className="mt-14">
-          <h2 className="text-3xl font-semibold text-zinc-900 mb-6">Shop by Category</h2>
+          <h2 className="text-3xl font-semibold text-heading mb-6">Shop by Category</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
               { name: 'Readymade garments', emoji: '👗' },
@@ -96,7 +101,7 @@ const Home = ({ products, onProductClick }) => {
         {/* Trending Now */}
         <section className="mt-14">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-semibold text-zinc-900">Trending Now</h2>
+            <h2 className="text-3xl font-semibold text-heading">Trending Now</h2>
             <Link
               to="/collection"
               className="text-primary font-medium hover:text-primary/80 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1"
@@ -115,13 +120,13 @@ const Home = ({ products, onProductClick }) => {
         <section className="mt-14">
           <div className="rounded-lg bg-primary text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-md">
             <div>
-              <h3 className="text-2xl font-bold">Festive Styles Are In ✨</h3>
+              <h3 className="text-2xl font-bold text-heading">Festive Styles Are In ✨</h3>
               <p className="text-white/90 mt-1">Fresh arrivals for every occasion. Limited stock available.</p>
             </div>
             <div>
               <Link
                 to="/collection"
-                className="inline-block bg-white text-primary px-5 py-2 rounded-md font-medium hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="inline-block bg-white text-heading px-5 py-2 rounded-md font-bold hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-heading"
               >
                 Shop Now
               </Link>
