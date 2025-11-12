@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#60C4FE', // site-wide brand blue
+  primary: '#5BBBF2', // reverted brand blue per latest request
         accent: '#F97316', // Warm Orange CTA
         heading: '#0A3D62', // Dark Navy for headings / accents
         body: '#2D3748', // Dark Charcoal for body text

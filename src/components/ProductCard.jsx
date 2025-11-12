@@ -9,7 +9,7 @@ const ProductCard = ({ product, onClick }) => {
   }
 
   return (
-  <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-shadow hover:shadow-lg hover:cursor-pointer">
+  <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 hover:cursor-pointer">
       {/* Image Container: flex-center so full image always visible */}
       <button
         type="button"

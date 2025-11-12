@@ -75,7 +75,7 @@ const Navbar = ({ onSearch, currentPath }) => {
           {/* Nav: center */}
           <div className="hidden md:flex justify-center flex-1">
             <nav aria-label="Primary" className="flex gap-4 items-center"> {/* Removed text-body */}
-              <NavLink to="/" end className={navLinkClasses}>Home</NavLink>
+              <NavLink to="/" end className={navLinkClasses }>Home</NavLink>
               <NavLink to="/collection" className={navLinkClasses}>Collection</NavLink>
               <NavLink to="/about" className={navLinkClasses}>About</NavLink>
               <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>

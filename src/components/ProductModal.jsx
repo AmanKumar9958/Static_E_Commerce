@@ -1,8 +1,19 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import LazyImage from './LazyImage'
 
 const ProductModal = ({ product, onClose }) => {
   const closeButtonRef = useRef(null)
+  const [isClosing, setIsClosing] = useState(false)
+  const closeTimerRef = useRef(null)
+
+  // Close handler must be defined before any hook that depends on it
+  const handleClose = useCallback(() => {
+    if (isClosing) return
+    setIsClosing(true)
+    closeTimerRef.current = setTimeout(() => {
+      onClose()
+    }, 180)
+  }, [isClosing, onClose])
 
   // Auto-focus the close button when the modal opens
   useEffect(() => {
@@ -15,34 +26,40 @@ const ProductModal = ({ product, onClose }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        onClose()
+        handleClose()
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [onClose])
+  }, [handleClose])
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+    }
+  }, [])
 
   if (!product) return null
 
   return (
     // Overlay: click to close
     <div
-      className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
-      onClick={onClose}
+      className={`fixed inset-0 flex items-center justify-center z-50 p-4 ${isClosing ? 'animate-overlay-out' : 'animate-overlay-in'}`}
+      onClick={handleClose}
       aria-modal="true"
       role="dialog"
     >
       {/* Modal Box: stop click propagation */}
       <div
-        className="bg-white rounded-lg max-w-2xl w-full mx-4 overflow-hidden shadow-xl"
+        className={`bg-white rounded-lg max-w-2xl w-full mx-4 overflow-hidden shadow-xl ${isClosing ? 'animate-pop-out' : 'animate-pop-in'}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b border-zinc-200">
-          <h3 className="text-xl font-bold text-zinc-900">{product.name}</h3>
+          <h3 className="text-xl font-bold text-heading">{product.name}</h3>
           <button
             ref={closeButtonRef}
-            onClick={onClose}
+            onClick={handleClose}
             className="p-2 rounded-full text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             aria-label="Close product modal"
           >
@@ -61,18 +78,18 @@ const ProductModal = ({ product, onClose }) => {
           {/* Details */}
           <div>
             <div className="flex gap-2 mb-4">
-              <span className="font-medium bg-[#60C4FE] text-[#2D3748] px-3 py-1 rounded-full text-sm">{product.category}</span>
-              <span className="font-medium bg-[#60C4FE] text-[#2D3748] px-3 py-1 rounded-full text-sm">{product.gender}</span>
+              <span className="font-medium bg-primary/10 text-body px-3 py-1 rounded-full text-sm border border-primary/40">{product.category}</span>
+              <span className="font-medium bg-primary/10 text-body px-3 py-1 rounded-full text-sm border border-primary/40">{product.gender}</span>
             </div>
             
-            <p className="text-zinc-700 mb-2 font-medium">Available sizes:</p>
+            <p className="text-body mb-2 font-medium">Available sizes:</p>
             <div className="flex gap-2 flex-wrap mb-4">
               {product.sizes.map(s => (
-                <div key={s} className="px-3 py-1 border border-zinc-300 rounded-md text-sm text-zinc-800">{s}</div>
+                <div key={s} className="px-3 py-1 border border-primary/40 rounded-md text-sm text-body bg-white">{s}</div>
               ))}
             </div>
 
-            <div className="text-3xl font-bold text-[#60C4FE] mb-6">
+            <div className="text-3xl font-bold text-primary mb-6">
               ₹{product.price.toFixed(2)}
             </div>
           </div>
