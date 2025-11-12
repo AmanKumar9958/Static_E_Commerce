@@ -7,20 +7,21 @@ const Home = ({ products, onProductClick }) => {
   const latest = products.slice(0, 4)
   const trending = products.slice(4, 8)
   return (
-    // Page background
-    <div className="bg-zinc-50 py-8">
+    // **UI/UX CHANGE:** Changed from bg-zinc-50 to bg-page (light blue tint)
+    <div className="bg-page py-8">
       <div className="container-max mx-auto px-4 sm:px-6">
         {/* Hero Section */}
-        <section className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-lg p-6 md:p-8 shadow-md mb-12">
+        <section className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-lg p-6 md:p-8 shadow-lg mb-12"> {/* Made shadow stronger */}
           <div>
             <h1 className="text-4xl lg:text-5xl font-extrabold text-heading">SKS Mart - Barbigha</h1>
             <p className="mt-4 text-lg text-body/80">
               Stylish, modern garments for Men, Women & Kids. Shop school dresses, readymade garments and corporate uniforms.
             </p>
             <div className="mt-8">
+              {/* **UI/UX CHANGE:** Using bg-cta (orange) for primary button */}
               <Link
                 to="/collection"
-                className="inline-block bg-white text-heading px-6 py-3 rounded-md font-bold transition-all duration-200 shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-heading transform hover:-translate-y-0.5"
+                className="inline-block bg-cta text-white px-7 py-3 rounded-md font-bold transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cta transform hover:-translate-y-0.5"
               >
                 Explore
               </Link>
@@ -44,11 +45,12 @@ const Home = ({ products, onProductClick }) => {
               { icon: '👔', title: 'Uniform & Bulk', desc: 'School and corporate uniforms' },
               { icon: '🤝', title: 'Local Support', desc: 'Easy exchanges & assistance' },
             ].map((f) => (
-              <div key={f.title} className="bg-white rounded-lg shadow-sm border border-zinc-200 p-5 flex items-start gap-4">
+              // **UI/UX CHANGE:** Matched text and border colors to theme
+              <div key={f.title} className="bg-white rounded-lg shadow-sm border border-primary/20 p-5 flex items-start gap-4">
                 <div className="text-2xl" aria-hidden> {f.icon} </div>
                 <div>
-                  <h3 className="font-semibold text-zinc-900">{f.title}</h3>
-                  <p className="text-sm text-zinc-600 mt-1">{f.desc}</p>
+                  <h3 className="font-semibold text-heading">{f.title}</h3>
+                  <p className="text-sm text-body mt-1">{f.desc}</p>
                 </div>
               </div>
             ))}
@@ -88,11 +90,12 @@ const Home = ({ products, onProductClick }) => {
               <Link
                 key={c.name}
                 to="/collection"
-                className="group bg-white rounded-lg border border-zinc-200 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                // **UI/UX CHANGE:** Matched border and text colors to theme
+                className="group bg-white rounded-lg border border-primary/20 p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label={`Browse ${c.name}`}
               >
                 <div className="text-3xl mb-2" aria-hidden>{c.emoji}</div>
-                <div className="font-medium text-zinc-900 group-hover:text-primary">{c.name}</div>
+                <div className="font-medium text-heading group-hover:text-primary">{c.name}</div>
               </Link>
             ))}
           </div>
@@ -118,15 +121,17 @@ const Home = ({ products, onProductClick }) => {
 
         {/* Promo Banner */}
         <section className="mt-14">
-          <div className="rounded-lg bg-primary text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-md">
+          <div className="rounded-lg bg-primary text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-lg"> {/* Added shadow */ }
             <div>
-              <h3 className="text-2xl font-bold text-heading">Festive Styles Are In ✨</h3>
+              {/* **UI/UX FIX:** Changed from text-heading (bad contrast) to text-white */}
+              <h3 className="text-2xl font-bold text-white">Festive Styles Are In ✨</h3>
               <p className="text-white/90 mt-1">Fresh arrivals for every occasion. Limited stock available.</p>
             </div>
             <div>
+              {/* **UI/UX CHANGE:** Using bg-cta (orange) for consistency */}
               <Link
                 to="/collection"
-                className="inline-block bg-white text-heading px-5 py-2 rounded-md font-bold hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-heading"
+                className="inline-block bg-cta text-white px-5 py-2 rounded-md font-bold hover:bg-cta/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Shop Now
               </Link>

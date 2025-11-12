@@ -42,13 +42,16 @@ const Navbar = ({ onSearch, currentPath }) => {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // **UI/UX FIX:** Links on bg-primary MUST be high-contrast (white).
+  // The original text-heading/text-body had poor contrast.
   const navLinkClasses = ({ isActive }) =>
     `px-3 py-2 rounded-md font-medium transition-colors ${
       isActive
-        ? 'text-heading bg-white/20' // Active: navy text with subtle bg
-        : 'text-body hover:text-heading' // Inactive: charcoal; hover to navy
+        ? 'text-white bg-white/25' // Active: White text with subtle bg
+        : 'text-white/80 hover:text-white hover:bg-white/10' // Inactive: Semi-transparent white
     } focus:outline-none focus-visible:ring-2 focus-visible:ring-white`
 
+  // Mobile links already had the correct white text logic
   const mobileNavLinkClasses = (path) =>
     `w-full text-left px-3 py-3 rounded-md font-medium ${
       currentPath === path
@@ -63,14 +66,15 @@ const Navbar = ({ onSearch, currentPath }) => {
           {/* Brand: left */}
           <div className="flex items-center gap-4 flex-1">
             <Link to="/" className="hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <span className='text-lg md:text-2xl font-bold text-heading group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
-              <span className='text-xs sm:text-sm text-body/80'>1st Floor, Jagdamba Market</span>
+              {/* **UI/UX FIX:** Changed text from text-heading to text-white for accessibility */}
+              <span className='text-lg md:text-2xl font-bold text-white group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
+              <span className='text-xs sm:text-sm text-white/80'>1st Floor, Jagdamba Market</span>
             </Link>
           </div>
 
           {/* Nav: center */}
           <div className="hidden md:flex justify-center flex-1">
-            <nav aria-label="Primary" className="flex gap-4 items-center text-body">
+            <nav aria-label="Primary" className="flex gap-4 items-center"> {/* Removed text-body */}
               <NavLink to="/" end className={navLinkClasses}>Home</NavLink>
               <NavLink to="/collection" className={navLinkClasses}>Collection</NavLink>
               <NavLink to="/about" className={navLinkClasses}>About</NavLink>
@@ -86,7 +90,8 @@ const Navbar = ({ onSearch, currentPath }) => {
               <button
                 type="button"
                 onClick={() => submitSearch(text)}
-                className="absolute inset-y-0 left-2 flex items-center text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                // Icon is on the white input, so text-heading (dark blue) is perfect here.
+                className="absolute inset-y-0 left-2 flex items-center text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Search"
                 title="Search"
               >
@@ -105,13 +110,14 @@ const Navbar = ({ onSearch, currentPath }) => {
                   }
                 }}
                 placeholder={placeholder}
-                className="bg-white text-body placeholder:text-[#6B7280] rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-white"
+                // Text inside input uses text-body (dark slate), which is perfect.
+                className="bg-white text-body placeholder:text-body/80 rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label="Search products"
               />
               {text && (
                 <button
                   onClick={clear}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   aria-label="Clear search input"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:cursor-pointer" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>

@@ -69,16 +69,16 @@ const Collection = ({ products, searchQuery }) => {
     }, 350)
   }
 
-  // Helper function for styling filter buttons
+  // **UI/UX CHANGE:** Updated inactive button style to match blue theme
   const filterButtonClasses = (f) =>
     `hover:cursor-pointer px-3 py-2 rounded-md transition-all duration-150 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary ${
       activeFilter === f
         ? 'bg-primary text-white shadow-sm' // Active state
-        : 'bg-white text-zinc-800 border border-zinc-300 hover:bg-zinc-100' // Inactive state
+        : 'bg-white text-heading border border-primary/20 hover:bg-primary/10' // Inactive state
     }`
 
-  // Helper variable for styling the select dropdown
-  const selectClasses = "px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary text-zinc-800"
+  // **UI/UX CHANGE:** Updated select style to match blue theme
+  const selectClasses = "px-3 py-2 border border-primary/20 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary text-heading"
 
   // Reusable Filter Controls component (for both mobile and desktop)
   const FilterControls = () => (
@@ -95,7 +95,7 @@ const Collection = ({ products, searchQuery }) => {
         ))}
       </div>
       <div className="flex items-center gap-3">
-        <label htmlFor="sort-by" className="text-sm font-medium text-zinc-800">Sort:</label>
+        <label htmlFor="sort-by" className="text-sm font-medium text-heading">Sort:</label>
         <select id="sort-by" value={sortBy} onChange={(e) => setSortBy(e.target.value)} className={selectClasses}>
           <option value="none">None</option>
           <option value="low">Price: Low to High</option>
@@ -106,8 +106,8 @@ const Collection = ({ products, searchQuery }) => {
   )
 
   return (
-    // Page background
-    <div className="bg-zinc-50 py-6 md:py-8 min-h-screen">
+    // **UI/UX CHANGE:** Changed from bg-zinc-50 to bg-page (light blue tint)
+    <div className="bg-page py-6 md:py-8 min-h-screen">
       <div className="container-max mx-auto px-4 md:px-6">
         
         {/* Mobile: Show filters toggle */}
@@ -116,9 +116,10 @@ const Collection = ({ products, searchQuery }) => {
             onClick={() => setFiltersOpen(o => !o)}
             aria-expanded={filtersOpen}
             aria-controls="mobile-filters"
-            className="w-full flex items-center justify-between px-4 py-2 border border-zinc-300 rounded-md bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            // **UI/UX CHANGE:** Updated mobile toggle style to match theme
+            className="w-full flex items-center justify-between px-4 py-2 border border-primary/20 rounded-md bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            <span className="flex items-center gap-2 font-medium text-zinc-800">
+            <span className="flex items-center gap-2 font-medium text-heading">
               {/* Filter Icon */}
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
@@ -126,10 +127,10 @@ const Collection = ({ products, searchQuery }) => {
               Filters
             </span>
             {/* Chevron Icon */}
-            <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 transition-transform text-zinc-600 ${filtersOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 transition-transform text-body/80 ${filtersOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" /></svg>
           </button>
           {filtersOpen && (
-            <div id="mobile-filters" className="mt-3 p-4 bg-white rounded-md border border-zinc-200 space-y-4">
+            <div id="mobile-filters" className="mt-3 p-4 bg-white rounded-md border border-primary/20 space-y-4">
               <FilterControls />
             </div>
           )}
@@ -155,9 +156,11 @@ const Collection = ({ products, searchQuery }) => {
             <button
               onClick={showMore}
               disabled={isPaging}
-              className="px-5 py-2 rounded-md border border-zinc-300 bg-white text-zinc-800 font-medium hover:bg-zinc-100 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-2"
+              // **UI/UX CHANGE:** Changed to solid primary button
+              className="px-5 py-2 rounded-md bg-primary text-white font-medium hover:bg-primary/80 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-2"
             >
-              {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-zinc-300 border-t-primary animate-spin" />}
+              {/* **UI/UX FIX:** Spinner is now white to contrast on the blue button */}
+              {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />}
               <span>Show more</span>
             </button>
           </div>
