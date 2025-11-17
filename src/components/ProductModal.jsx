@@ -42,9 +42,9 @@ const ProductModal = ({ product, onClose }) => {
   if (!product) return null
 
   return (
-    // Overlay: click to close
+    // Overlay: click to close (dim + blur background)
     <div
-      className={`fixed inset-0 flex items-center justify-center z-50 p-4 ${isClosing ? 'animate-overlay-out' : 'animate-overlay-in'}`}
+      className={`fixed inset-0 flex items-center justify-center z-50 p-4 bg-black/60 backdrop-blur-md ${isClosing ? 'animate-overlay-out' : 'animate-overlay-in'}`}
       onClick={handleClose}
       aria-modal="true"
       role="dialog"

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Ensure the page background matches theme even during overscroll */
+html, body { background-color: #F0F9FF; }
+
 /* Simple mount animations for newly revealed items */
 @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(6px); }
@@ -35,6 +38,14 @@
 .animate-pop-out { animation: pop-out 180ms ease-in forwards; }
 .animate-overlay-in { animation: overlay-in 200ms ease-out both; }
 .animate-overlay-out { animation: overlay-out 160ms ease-in forwards; }
+
+/* Backdrop blur utilities (small / medium) */
+.backdrop-blur-sm { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.backdrop-blur-md { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+/* Small viewport height utilities for mobile address bar behaviors */
+.min-h-svh { min-height: 100svh; }
+.h-svh { height: 100svh; }
 
 /* Utility override if tailwind theme extension failed: ensure primary classes work */
 .text-primary { color: #5BBBF2; }

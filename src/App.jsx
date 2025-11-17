@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-page"> {/* Use bg-page for consistent tint */}
+      <div className="min-h-svh flex flex-col bg-page"> {/* Use svh to avoid mobile bottom gap */}
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-white px-3 py-2 rounded">Skip to content</a>
         <Navbar onSearch={setSearch} currentPath={window.location.pathname} />
         <ScrollToTop />

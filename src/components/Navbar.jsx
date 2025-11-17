@@ -10,6 +10,9 @@ const Navbar = ({ onSearch, currentPath }) => {
   const inputRef = useRef(null)
   const menuButtonRef = useRef(null)
   const navigate = useNavigate()
+  // showNav controls whether navbar is visible (show on scroll up, hide on scroll down)
+  const [showNav, setShowNav] = useState(true)
+  const prevScrollRef = useRef(typeof window !== 'undefined' ? window.scrollY : 0)
 
   useEffect(() => {
     const id = setInterval(() => setPhIndex(i => (i + 1) % placeholders.length), 2500)
@@ -42,33 +45,50 @@ const Navbar = ({ onSearch, currentPath }) => {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // Hide on scroll down, show on scroll up. Keep visible when mobile menu open.
+  useEffect(() => {
+    const onScroll = () => {
+      const current = window.scrollY
+      const prev = prevScrollRef.current || 0
+      // if scrolling down and passed threshold, hide
+      if (current > prev && current > 80 && !open) {
+        setShowNav(false)
+      } else {
+        // scrolling up -> show
+        setShowNav(true)
+      }
+      prevScrollRef.current = current
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [open])
+
   // **UI/UX FIX:** Links on bg-primary MUST be high-contrast (white).
   // The original text-heading/text-body had poor contrast.
   const navLinkClasses = ({ isActive }) =>
     `px-3 py-2 rounded-md font-medium transition-colors ${
       isActive
-        ? 'text-white bg-white/25' // Active: White text with subtle bg
-        : 'text-white/80 hover:text-white hover:bg-white/10' // Inactive: Semi-transparent white
-    } focus:outline-none focus-visible:ring-2 focus-visible:ring-white`
+        ? 'text-heading bg-white/25'
+        : 'text-heading opacity-90 hover:opacity-100 hover:bg-white/10'
+    } focus:outline-none focus-visible:ring-2 focus-visible:ring-primary`
 
   // Mobile links already had the correct white text logic
   const mobileNavLinkClasses = (path) =>
     `w-full text-left px-3 py-3 rounded-md font-medium ${
       currentPath === path
-        ? 'text-white bg-white/25' // Active mobile link
-        : 'text-white/90 hover:bg-white/15' // Inactive mobile link
+        ? 'text-heading bg-white/25'
+        : 'text-heading opacity-90 hover:bg-white/15'
     }`
 
   return (
-  <header className="bg-primary shadow-sm sticky top-0 z-50">
+  <header className={`bg-primary shadow-sm sticky top-0 z-50 transform transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="container-max mx-auto px-4 md:px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Brand: left */}
           <div className="flex items-center gap-4 flex-1">
             <Link to="/" className="hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              {/* **UI/UX FIX:** Changed text from text-heading to text-white for accessibility */}
-              <span className='text-lg md:text-2xl font-bold text-white group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
-              <span className='text-xs sm:text-sm text-white/80'>1st Floor, Jagdamba Market</span>
+              <span className='text-lg md:text-2xl font-bold text-heading group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
+              <span className='text-xs sm:text-sm text-heading opacity-80'>1st Floor, Jagdamba Market</span>
             </Link>
           </div>
 
@@ -133,7 +153,7 @@ const Navbar = ({ onSearch, currentPath }) => {
                 aria-controls="mobile-menu"
                 aria-expanded={open}
                 aria-label="Toggle navigation menu"
-                className="p-2 rounded border border-white/60 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="p-2 rounded border border-white/60 text-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>

@@ -21,7 +21,7 @@ const Home = ({ products, onProductClick }) => {
               {/* **UI/UX CHANGE:** Using bg-cta (orange) for primary button */}
               <Link
                 to="/collection"
-                className="inline-block bg-cta text-white px-7 py-3 rounded-md font-bold transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cta transform hover:-translate-y-0.5"
+                className="inline-block bg-cta text-heading px-7 py-3 rounded-md font-bold transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cta transform hover:-translate-y-0.5"
               >
                 Explore
               </Link>
@@ -121,17 +121,16 @@ const Home = ({ products, onProductClick }) => {
 
         {/* Promo Banner */}
         <section className="mt-14">
-          <div className="rounded-lg bg-primary text-white p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-lg"> {/* Added shadow */ }
+          <div className="rounded-lg bg-primary text-heading p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-lg"> {/* Added shadow */ }
             <div>
-              {/* **UI/UX FIX:** Changed from text-heading (bad contrast) to text-white */}
-              <h3 className="text-2xl font-bold text-white">Festive Styles Are In ✨</h3>
-              <p className="text-white/90 mt-1">Fresh arrivals for every occasion. Limited stock available.</p>
+              <h3 className="text-2xl font-bold text-heading">Festive Styles Are In ✨</h3>
+              <p className="mt-1 text-heading opacity-90">Fresh arrivals for every occasion. Limited stock available.</p>
             </div>
             <div>
               {/* **UI/UX CHANGE:** Using bg-cta (orange) for consistency */}
               <Link
                 to="/collection"
-                className="inline-block bg-cta text-white px-5 py-2 rounded-md font-bold hover:bg-cta/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="inline-block bg-cta text-heading px-5 py-2 rounded-md font-bold hover:bg-cta/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Shop Now
               </Link>

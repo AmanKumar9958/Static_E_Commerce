@@ -73,7 +73,7 @@ const Collection = ({ products, searchQuery }) => {
   const filterButtonClasses = (f) =>
     `hover:cursor-pointer px-3 py-2 rounded-md transition-all duration-150 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary ${
       activeFilter === f
-        ? 'bg-primary text-white shadow-sm' // Active state
+        ? 'bg-primary text-heading shadow-sm' // Active state
         : 'bg-white text-heading border border-primary/20 hover:bg-primary/10' // Inactive state
     }`
 
@@ -157,7 +157,7 @@ const Collection = ({ products, searchQuery }) => {
               onClick={showMore}
               disabled={isPaging}
               // **UI/UX CHANGE:** Changed to solid primary button
-              className="px-5 py-2 rounded-md bg-primary text-white font-medium hover:bg-primary/80 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-2"
+              className="px-5 py-2 rounded-md bg-primary text-heading font-medium hover:bg-primary/80 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-2"
             >
               {/* **UI/UX FIX:** Spinner is now white to contrast on the blue button */}
               {isPaging && <span className="inline-block h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />}

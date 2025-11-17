@@ -29,22 +29,22 @@ const Carousel = ({slides = [], interval = 3000}) => {
 
   return (
     <div
-      className="w-full h-80 relative rounded overflow-hidden"
+      className="w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] relative rounded overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       {slides.map((s, i) => (
         <div
           key={s.id || i}
-          className={`absolute inset-0 transition-opacity duration-700 ${i===index? 'opacity-100 z-10' : 'opacity-0 z-0'} flex items-center justify-end`}
+          className={`absolute inset-0 transition-opacity duration-700 ${i===index? 'opacity-100 z-10' : 'opacity-0 z-0'} flex items-center`}
           aria-hidden={i===index? 'false' : 'true'}
         >
           {/* gradient to improve left-side text contrast */}
           <div className="absolute inset-0 pointer-events-none" style={{background: 'linear-gradient(to right, rgba(0,0,0,0.45), rgba(0,0,0,0))'}} />
-          <LazyImage src={s.image} alt={s.alt || ''} eager={i===0} className="h-full object-contain object-right" wrapperClassName="h-full w-full" />
+          <LazyImage src={s.image} alt={s.alt || ''} eager={i===0} className="w-full h-full object-cover md:object-center lg:object-top" wrapperClassName="h-full w-full" />
           <div className="absolute left-6 top-1/2 -translate-y-1/2 text-white drop-shadow-lg">
-            <h3 className="text-3xl font-extrabold">{s.title}</h3>
-            {s.subtitle && <p className="mt-2 text-sm">{s.subtitle}</p>}
+            <h3 className="text-5xl font-extrabold">{s.title}</h3>
+            {s.subtitle && <p className="mt-2 text-md">{s.subtitle}</p>}
             {s.cta && (
               <a 
                 href={s.cta.href} 
