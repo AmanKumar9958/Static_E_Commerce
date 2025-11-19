@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 const placeholders = ['Shirt', 'T-Shirts', 'Dress', 'Skirt', 'Blazer', 'School Shirt', 'Uniform', 'Trousers']
@@ -81,24 +82,61 @@ const Navbar = ({ onSearch, currentPath }) => {
     }`
 
   return (
-  <header className={`bg-primary shadow-sm sticky top-0 z-50 transform transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
+  <motion.header
+    initial={{ y: -64 }}
+    animate={{ y: showNav ? 0 : -96 }}
+    transition={{ type: 'spring', stiffness: 320, damping: 28, mass: 0.5 }}
+    className="bg-primary shadow-sm sticky top-0 z-50"
+  >
       <div className="container-max mx-auto px-4 md:px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Brand: left */}
           <div className="flex items-center gap-4 flex-1">
+            <motion.div whileHover={{ y: -1 }} transition={{ type: 'spring', stiffness: 420, damping: 24, mass: 0.3 }}>
             <Link to="/" className="hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
               <span className='text-lg md:text-2xl font-bold text-heading group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
               <span className='text-xs sm:text-sm text-heading opacity-80'>1st Floor, Jagdamba Market</span>
             </Link>
+            </motion.div>
           </div>
 
           {/* Nav: center */}
           <div className="hidden md:flex justify-center flex-1">
-            <nav aria-label="Primary" className="flex gap-4 items-center"> {/* Removed text-body */}
-              <NavLink to="/" end className={navLinkClasses }>Home</NavLink>
-              <NavLink to="/collection" className={navLinkClasses}>Collection</NavLink>
-              <NavLink to="/about" className={navLinkClasses}>About</NavLink>
-              <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
+            <nav aria-label="Primary" className="flex gap-4 items-center">
+              {[
+                { path: '/', label: 'Home', end: true },
+                { path: '/collection', label: 'Collection' },
+                { path: '/about', label: 'About' },
+                { path: '/contact', label: 'Contact' },
+              ].map((item) => (
+                <NavLink key={item.path} to={item.path} end={item.end} className="relative px-1 py-1 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                  {({ isActive }) => (
+                    <motion.div
+                      className={`relative px-2 py-1 rounded-md font-medium ${isActive ? 'text-heading' : 'text-heading opacity-90'} hover:opacity-100 hover:bg-white/10`}
+                      whileHover={{ y: -1 }}
+                      transition={{ type: 'spring', stiffness: 420, damping: 28, mass: 0.25 }}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="navActiveBg"
+                          className="absolute inset-0 rounded-md bg-white/20"
+                          transition={{ type: 'spring', stiffness: 500, damping: 30, mass: 0.3 }}
+                          style={{ zIndex: 0 }}
+                        />
+                      )}
+                      <span className="relative z-10">{item.label}</span>
+                      {isActive && (
+                        <motion.span
+                          layoutId="navUnderline"
+                          className="absolute left-1 right-1 -bottom-0.5 h-0.5 bg-heading"
+                          style={{ borderRadius: 2, zIndex: 10 }}
+                          transition={{ type: 'spring', stiffness: 520, damping: 34, mass: 0.3 }}
+                        />
+                      )}
+                    </motion.div>
+                  )}
+                </NavLink>
+              ))}
             </nav>
           </div>
 
@@ -162,18 +200,29 @@ const Navbar = ({ onSearch, currentPath }) => {
         </div>
 
         {/* mobile menu */}
-        {open && (
-          <div id="mobile-menu" className="md:hidden mt-3 border-t border-white/30 pt-3" role="menu" aria-labelledby="mobile-menu-button">
-            <div className="flex flex-col space-y-1">
-              <button role="menuitem" onClick={() => { navigate('/'); setOpen(false) }} className={mobileNavLinkClasses('/')}>Home</button>
-              <button role="menuitem" onClick={() => { navigate('/collection'); setOpen(false) }} className={mobileNavLinkClasses('/collection')}>Collection</button>
-              <button role="menuitem" onClick={() => { navigate('/about'); setOpen(false) }} className={mobileNavLinkClasses('/about')}>About</button>
-              <button role="menuitem" onClick={() => { navigate('/contact'); setOpen(false) }} className={mobileNavLinkClasses('/contact')}>Contact</button>
-            </div>
-          </div>
-        )}
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              id="mobile-menu"
+              className="md:hidden mt-3 border-t border-white/30 pt-3"
+              role="menu"
+              aria-labelledby="mobile-menu-button"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
+              <div className="flex flex-col space-y-1 overflow-hidden">
+                <button role="menuitem" onClick={() => { navigate('/'); setOpen(false) }} className={mobileNavLinkClasses('/')}>Home</button>
+                <button role="menuitem" onClick={() => { navigate('/collection'); setOpen(false) }} className={mobileNavLinkClasses('/collection')}>Collection</button>
+                <button role="menuitem" onClick={() => { navigate('/about'); setOpen(false) }} className={mobileNavLinkClasses('/about')}>About</button>
+                <button role="menuitem" onClick={() => { navigate('/contact'); setOpen(false) }} className={mobileNavLinkClasses('/contact')}>Contact</button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   )
 }
 

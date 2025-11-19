@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -10,16 +10,25 @@ import ProductModal from './components/ProductModal'
 import products from './data/products'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import LoadingOverlay from './components/LoadingOverlay'
 
 const App = () => {
   const [search, setSearch] = useState('')
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Show a brief loading overlay on initial mount
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 700)
+    return () => clearTimeout(t)
+  }, [])
 
   const handleProductClick = (product) => setSelectedProduct(product)
 
   return (
     <BrowserRouter>
       <div className="min-h-svh flex flex-col bg-page"> {/* Use svh to avoid mobile bottom gap */}
+        <LoadingOverlay show={isLoading} />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-white px-3 py-2 rounded">Skip to content</a>
         <Navbar onSearch={setSearch} currentPath={window.location.pathname} />
         <ScrollToTop />

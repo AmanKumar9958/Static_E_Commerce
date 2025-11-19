@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import LazyImage from './LazyImage'
 
 const ProductCard = ({ product, onClick }) => {
@@ -9,7 +10,12 @@ const ProductCard = ({ product, onClick }) => {
   }
 
   return (
-  <div className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 hover:cursor-pointer">
+  <motion.div
+    whileHover={{ y: -4, scale: 1.01 }}
+    whileTap={{ scale: 0.995 }}
+    transition={{ type: 'spring', stiffness: 320, damping: 22, mass: 0.3 }}
+    className="bg-white rounded-lg shadow-md group border border-zinc-200 transition-all duration-200 hover:shadow-lg hover:cursor-pointer"
+  >
       {/* Image Container: flex-center so full image always visible */}
       <button
         type="button"
@@ -40,7 +46,7 @@ const ProductCard = ({ product, onClick }) => {
           <div className="text-xs font-medium bg-zinc-100 text-body px-2 py-1 rounded-full">{product.gender}</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
