@@ -1,63 +1,89 @@
-import React from 'react'
-import Reveal from '../components/Reveal'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const About = () => {
+export default function About() {
   return (
-    // **UI/UX CHANGE:** Changed from bg-zinc-50 to bg-page (light blue tint)
-    <div className="bg-page py-10 min-h-screen">
-      <div className="container-max mx-auto px-4 sm:px-6">
-        <section className="bg-white rounded-lg p-6 md:p-8 shadow-lg">
-          <Reveal direction="up">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-heading mb-6">About Us</h1>
-          </Reveal>
-          <Reveal direction="up">
-            <div className="space-y-4 text-body text-base md:text-lg">
-              <p>
-                Welcome to <span className="font-semibold text-heading">SKS Mart - Barbigha</span>. We are a local apparel store offering
-                a curated selection of quality garments for Men, Women, and Kids. From everyday
-                essentials to school uniforms and readymade garments, our goal is to bring you
-                comfortable styles at fair prices.
-              </p>
-              <p>
-                We believe shopping should be simple, friendly, and trustworthy. Our small team is
-                committed to helpful service and products you can rely on.
-              </p>
+    <div className="min-h-screen bg-[#fcf9f6]">
+      {/* Hero Section */}
+      <section className="relative h-[340px] md:h-[420px] flex items-center justify-center">
+        <img
+          src="/about_banner.png"
+          alt="About Hero"
+          className="absolute inset-0 w-full h-full object-cover opacity-80 rounded-xl"
+        />
+        <div className="relative z-10 text-center text-white w-full">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Our Story, Woven Into Every Thread.</h1>
+          <p className="mb-6 text-lg md:text-xl">Discover the passion, craftsmanship, and values that define our brand and our commitment to timeless fashion for the whole family.</p>
+        </div>
+      </section>
+
+      {/* Simple Idea Section */}
+      <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16 px-4 items-center">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">From a Simple Idea to Your Wardrobe</h2>
+          <p className="text-gray-700 mb-4">Founded with a passion for timeless style and a commitment to quality, our journey began with a simple sketch. We believe in creating pieces that are not only beautiful but are made to last, ethically sourced, and designed for every member of the family.</p>
+          <p className="text-gray-700">Our mission is to inspire confidence through clothing that feels as good as it looks, blending classic silhouettes with modern sensibilities to create your future heirlooms.</p>
+        </div>
+        <div>
+          <img src="/about_hero.png" alt="Studio" className="rounded-xl w-full object-cover" />
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="bg-[#f7f5f2] py-16">
+        <div className="max-w-4xl mx-auto text-center mb-10">
+          <h2 className="text-2xl font-bold mb-2">Our Core Values</h2>
+          <p className="text-gray-600">The principles that guide every stitch and decision we make.</p>
+        </div>
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center">
+            <div className="bg-[#fbeee0] rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <span className="text-2xl">🧵</span>
             </div>
-          </Reveal>
-
-          <div className="grid sm:grid-cols-3 gap-6 mt-8 pt-6 border-t border-primary/20">
-            <Reveal direction="up">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-primary mb-3">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="font-semibold text-lg text-heading mb-2">Quality First</h3>
-                <p className="text-body">Well-made fabrics and finishing you can feel.</p>
-              </div>
-            </Reveal>
-            <Reveal direction="up">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-primary mb-3">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 6v.75a2.25 2.25 0 01-2.25 2.25H10.5a2.25 2.25 0 01-2.25-2.25V6m1.5-1.5H15a1.5 1.5 0 011.5 1.5v1.5A1.5 1.5 0 0115 9h-1.5a1.5 1.5 0 01-1.5-1.5V6a1.5 1.5 0 011.5-1.5zM10.5 6a2.25 2.25 0 00-2.25 2.25H7.5A2.25 2.25 0 005.25 6v.75a2.25 2.25 0 002.25 2.25h.75A2.25 2.25 0 0010.5 6zM13.5 12a2.25 2.25 0 00-2.25 2.25H9.75A2.25 2.25 0 007.5 12v.75a2.25 2.25 0 002.25 2.25h.75a2.25 2.25 0 002.25-2.25V12a2.25 2.25 0 00-2.25-2.25zM13.5 12a2.25 2.25 0 012.25 2.25h1.5a2.25 2.25 0 012.25-2.25v.75a2.25 2.25 0 01-2.25 2.25h-.75a2.25 2.25 0 01-2.25-2.25V12z" />
-                </svg>
-                <h3 className="font-semibold text-lg text-heading mb-2">Fair Pricing</h3>
-                <p className="text-body">Clear, honest prices with good value.</p>
-              </div>
-            </Reveal>
-            <Reveal direction="up">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-primary mb-3">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 00-3.162-3.898m2.404 4.802A9.094 9.094 0 0018 18.72m-2.404-4.802l.15-.15m-2.554 4.952a9.094 9.094 0 01-3.162-3.898m-2.404 4.802A9.094 9.094 0 016 18.72m2.404-4.802l-.15-.15m2.554 4.952a9.094 9.094 0 003.162-3.898M12 6.75a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5z" />
-                </svg>
-                <h3 className="font-semibold text-lg text-heading mb-2">Friendly Service</h3>
-                <p className="text-body">A helpful, no-pressure in-store experience.</p>
-              </div>
-            </Reveal>
+            <h3 className="font-semibold mb-2">Quality Craftsmanship</h3>
+            <p className="text-sm text-gray-600 text-center">We obsess over every detail, from fabric selection to the final stitch, ensuring longevity and comfort.</p>
           </div>
-        </section>
-      </div>
-    </div>
-  )
-}
+          <div className="flex flex-col items-center">
+            <div className="bg-[#eaf7ea] rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <span className="text-2xl">🌱</span>
+            </div>
+            <h3 className="font-semibold mb-2">Sustainable Sourcing</h3>
+            <p className="text-sm text-gray-600 text-center">Committed to the planet, we prioritize eco-friendly materials and ethical production partners.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="bg-[#fbeee0] rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <span className="text-2xl">👥</span>
+            </div>
+            <h3 className="font-semibold mb-2">Community Focused</h3>
+            <p className="text-sm text-gray-600 text-center">We believe in building a diverse and inclusive community, celebrating individuality and style.</p>
+          </div>
+        </div>
+      </section>
 
-export default About
+      {/* Meet The Founders Section */}
+      <section className="max-w-5xl mx-auto py-16 px-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl font-bold mb-2">Meet The Founders</h2>
+          <p className="text-gray-600">The creative minds and driving force behind VogueWear.</p>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <img src="https://www.chaicafeteria.com/images/Owner.webp" alt="Sachida Kumar Singh" className="rounded-full w-28 h-28 object-cover mb-4" />
+            <div className="font-semibold">Shri Sachida Kumar Singh</div>
+            <div className="text-md font-semibold text-[#e07a5f] mb-2">Owner</div>
+            <p className="text-sm text-gray-600 text-center">With a background in fine arts and a love for textiles, Jane leads our creative vision, ensuring every collection is a work of art.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="bg-[#f7f5f2] py-16">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-4">Become Part of Our Story</h2>
+          <p className="text-gray-600 mb-6">Explore our latest arrivals and find pieces that tell your own story.</p>
+          <Link to="/collection" className="inline-block bg-[#e07a5f] text-white px-6 py-3 rounded-md font-bold hover:bg-[#d66a4a] transition">Explore Our Collections</Link>
+        </div>
+      </section>
+    </div>
+  );
+}
