@@ -5,6 +5,20 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 const placeholders = ['Shirt', 'T-Shirts', 'Dress', 'Skirt', 'Blazer', 'School Shirt', 'Uniform', 'Trousers']
 
 const Navbar = ({ onSearch, currentPath }) => {
+    const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+    const mobileSearchRef = useRef(null);
+
+    // Hide mobile search on outside click
+    useEffect(() => {
+      if (!mobileSearchOpen) return;
+      const handleClick = (e) => {
+        if (mobileSearchRef.current && !mobileSearchRef.current.contains(e.target)) {
+          setMobileSearchOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClick);
+      return () => document.removeEventListener('mousedown', handleClick);
+    }, [mobileSearchOpen]);
   const [open, setOpen] = useState(false)
   const [text, setText] = useState('')
   const [phIndex, setPhIndex] = useState(0)
@@ -88,14 +102,14 @@ const Navbar = ({ onSearch, currentPath }) => {
     transition={{ type: 'spring', stiffness: 320, damping: 28, mass: 0.5 }}
     className="bg-primary shadow-sm sticky top-0 z-50"
   >
-      <div className="container-max mx-auto px-4 md:px-6 py-3">
+      <div className="container-max mx-auto px-4 md:px-6 py-2">
         <div className="flex items-center justify-between">
           {/* Brand: left */}
           <div className="flex items-center gap-4 flex-1">
             <motion.div whileHover={{ y: -1 }} transition={{ type: 'spring', stiffness: 420, damping: 24, mass: 0.3 }}>
             <Link to="/" className="hover:cursor-pointer flex flex-col group rounded-md p-1 -ml-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <span className='text-lg md:text-2xl font-bold text-heading group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
-              <span className='text-xs sm:text-sm text-heading opacity-80'>1st Floor, Jagdamba Market</span>
+              <span className='text-lg md:text-xl font-bold text-heading group-hover:opacity-90 transition-opacity'>SKS Mart - Barbigha</span>
+              <span className='text-xs sm:text-sm text-heading opacity-80 hidden md:block'>1st Floor, Jagdamba Market</span>
             </Link>
             </motion.div>
           </div>
@@ -142,13 +156,12 @@ const Navbar = ({ onSearch, currentPath }) => {
 
           {/* Actions: right */}
           <div className="flex items-center gap-4 justify-end flex-1">
-            {/* Search Input */}
-            <div className="relative">
+            {/* Desktop Search Input */}
+            <div className="relative hidden md:block">
               <label htmlFor="site-search" className="sr-only">Search products</label>
               <button
                 type="button"
                 onClick={() => submitSearch(text)}
-                // Icon is on the white input, so text-heading (dark blue) is perfect here.
                 className="absolute inset-y-0 left-2 flex items-center text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Search"
                 title="Search"
@@ -168,7 +181,6 @@ const Navbar = ({ onSearch, currentPath }) => {
                   }
                 }}
                 placeholder={placeholder}
-                // Text inside input uses text-body (dark slate), which is perfect.
                 className="bg-white text-body placeholder:text-body/80 rounded-md pl-9 pr-10 py-2 w-36 md:w-56 focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label="Search products"
               />
@@ -180,6 +192,47 @@ const Navbar = ({ onSearch, currentPath }) => {
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:cursor-pointer" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
                 </button>
+              )}
+            </div>
+
+            {/* Mobile Search Icon & Input */}
+            <div className="md:hidden relative">
+              {!mobileSearchOpen && (
+                <button
+                  type="button"
+                  aria-label="Open search"
+                  className="p-2 rounded-full text-heading focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  onClick={() => setMobileSearchOpen(true)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.386a1 1 0 01-1.414 1.415l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" /></svg>
+                </button>
+              )}
+              {mobileSearchOpen && (
+                <div ref={mobileSearchRef} className="absolute right-0 top-0 z-50 bg-white rounded-md shadow-lg p-2 w-64 flex items-center">
+                  <input
+                    id="mobile-site-search"
+                    value={text}
+                    autoFocus
+                    onChange={(e) => { setText(e.target.value); onSearch(e.target.value) }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault(); submitSearch(text); setMobileSearchOpen(false);
+                      }
+                    }}
+                    placeholder={placeholder}
+                    className="bg-white text-body placeholder:text-body/80 rounded-md pl-3 pr-8 py-2 w-full focus:outline-none focus:ring-2 focus:ring-primary"
+                    aria-label="Search products"
+                  />
+                  {text && (
+                    <button
+                      onClick={clear}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-heading p-1 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      aria-label="Clear search input"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:cursor-pointer" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
+                    </button>
+                  )}
+                </div>
               )}
             </div>
 

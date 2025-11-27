@@ -64,14 +64,14 @@ export default function About() {
       <section className="max-w-5xl mx-auto py-16 px-4">
         <div className="text-center mb-10">
           <h2 className="text-2xl font-bold mb-2">Meet The Founders</h2>
-          <p className="text-gray-600">The creative minds and driving force behind VogueWear.</p>
+          <p className="text-gray-600">The creative minds and driving force behind SKS Mart.</p>
         </div>
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center">
             <img src="https://www.chaicafeteria.com/images/Owner.webp" alt="Sachida Kumar Singh" className="rounded-full w-28 h-28 object-cover mb-4" />
             <div className="font-semibold">Shri Sachida Kumar Singh</div>
             <div className="text-md font-semibold text-[#e07a5f] mb-2">Owner</div>
-            <p className="text-sm text-gray-600 text-center">With a background in fine arts and a love for textiles, Jane leads our creative vision, ensuring every collection is a work of art.</p>
+            <p className="text-sm text-gray-600 text-center">With a background in fine arts and a love for textiles, Shri Sachida Kumar Singh leads our creative vision, ensuring every collection is a work of art.</p>
           </div>
         </div>
       </section>

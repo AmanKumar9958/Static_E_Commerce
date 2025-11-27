@@ -28,9 +28,9 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover opacity-70"
           />
           <div className="relative z-10 text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-4">The Fall Collection Is Here</h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Unleash Your Style This Season</h1>
             <p className="mb-6 text-lg md:text-xl">Discover timeless pieces designed for the modern wardrobe. Quality fabrics, modern designs.</p>
-            <button className="cursor-pointer bg-[#E07A5F] hover:bg-[#d66a4a] text-white font-semibold px-6 py-2 rounded-full shadow-lg transition">Shop Now</button>
+            <Link to="/collection" className="cursor-pointer bg-[#E07A5F] hover:bg-[#d66a4a] text-white font-semibold px-6 py-2 rounded-full shadow-lg transition">Shop Now</Link>
           </div>
         </section>
       </Reveal>
